@@ -50,7 +50,7 @@ class ScalaProblem99Specs extends Specification {
       List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e))
   }
 
-  "decode list specs" >> {
+  "decode list specs" >> { 
     decode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e))) ===
       List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
   }
@@ -59,7 +59,7 @@ class ScalaProblem99Specs extends Specification {
     duplicateN(3, List('a, 'b, 'c, 'c, 'd)) ===
       List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
   }
-
+p
   "drop every N list specs" >> {
     drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
       List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
@@ -68,6 +68,21 @@ class ScalaProblem99Specs extends Specification {
   "split list specs" >> {
     split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
       (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+  }
+
+  "slice list specs" >> {
+    slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      List('d, 'e, 'f, 'g)
+  }
+
+  "rotate list specs" >> {
+    rotate(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k, 'a, 'b, 'c)
+  }
+
+  "rotate negative list specs" >> {
+    rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
+      List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
   }
 
 }

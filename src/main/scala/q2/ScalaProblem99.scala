@@ -78,20 +78,36 @@ object ScalaProblem99 {
     packWithScan( ls ) map(x => (x.length, x.head))
   }
 
-  def decode[A](ls: List[(Int, A)]): List[A] = {
+  // P13
+  def decode[A](ls: List[(Int, A)]): List[A] = 
      ls flatMap(x => List.fill(x._1)(x._2) )
-  }
 
+  // P14
   def duplicateN[A](n: Int, ls: List[A]) : List[A] =
     ls.flatMap(x => List.fill(n)(x))
 
+  // P15
   def duplicate[A](n: Int, ls: List[A]) : List[A] =
     duplicateN(n, ls)
 
+  // P16
   def drop[A](n: Int, ls: List[A]) : List[A] =
     ls.zipWithIndex.filterNot(x => x._2 % (n) == n-1).map(_._1)
 
-  def split[A](n: Int, ls: List[A]) : (List[A], List[A]) = 
-    (ls.take(n), ls.drop(n))
-  
+  // P17
+  def split[A](n: Int, ls: List[A]) : (List[A], List[A]) = (ls.take(n), ls.drop(n))
+
+  // P18
+  def slice[A](s0: Int, s1: Int, ls: List[A]): List[A] = ls.drop(s0).take(s1-s0)
+
+  // P19, P20
+  def rotate[A](n: Int, ls: List[A]): List[A] =
+    if( n > 0)
+      ls.drop(n) ::: ls.take(n)
+    else if( n < 0 ) {
+      val lsr=ls.reverse
+      ( lsr.drop(Math.abs(n)) ::: lsr.take(Math.abs(n)) ).reverse
+    } else ls
+
+
 }
