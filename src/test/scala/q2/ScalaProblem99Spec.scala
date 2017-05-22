@@ -59,7 +59,7 @@ class ScalaProblem99Specs extends Specification {
     duplicateN(3, List('a, 'b, 'c, 'c, 'd)) ===
       List('a, 'a, 'a, 'b, 'b, 'b, 'c, 'c, 'c, 'c, 'c, 'c, 'd, 'd, 'd)
   }
-p
+
   "drop every N list specs" >> {
     drop(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) ===
       List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)
