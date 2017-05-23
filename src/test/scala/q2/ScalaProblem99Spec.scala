@@ -85,4 +85,22 @@ class ScalaProblem99Specs extends Specification {
       List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
   }
 
+  "remove element at list specs" >> {
+    removeAt(1, List('a, 'b, 'c, 'd)) === (List('a, 'c, 'd),'b)
+  }
+
+  "insert element at list specs" >> {
+    insertAt('new, 1, List('a, 'b, 'c, 'd)) ===
+      List('a, 'new, 'b, 'c, 'd)
+  }
+
+  "generate range list specs" >> {
+    range(4, 9) === List(4, 5, 6, 7, 8, 9)
+  }
+
+  "randolmly select list specs" >> {
+    val computed = randomSelect(3, List('a, 'b, 'c, 'd, 'f, 'g, 'h)) 
+    println(s"randomly selected: ${computed}")
+      computed.size ===3
+  }
 }

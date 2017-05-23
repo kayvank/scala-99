@@ -100,7 +100,7 @@ object ScalaProblem99 {
   // P18
   def slice[A](s0: Int, s1: Int, ls: List[A]): List[A] = ls.drop(s0).take(s1-s0)
 
-  // P19, P20
+  // P19
   def rotate[A](n: Int, ls: List[A]): List[A] =
     if( n > 0)
       ls.drop(n) ::: ls.take(n)
@@ -109,5 +109,38 @@ object ScalaProblem99 {
       ( lsr.drop(Math.abs(n)) ::: lsr.take(Math.abs(n)) ).reverse
     } else ls
 
+  // P20
+  def removeAt[A](n: Int, ls: List[A]) : (List[A], A)  = (
+    ls.take(n) ::: ls.drop(n+1), ls.drop(n).head)
 
+  // P21
+  def insertAt[A](e: A,  n: Int, ls: List[A]) : List[A]  = {
+    lazy val tmp= split(n, ls)
+    tmp._1 ::: List(e) ::: tmp._2
+  }
+
+  // P22
+  def range(s0: Int, s1: Int) : List[Int]  = {
+    (s0 to s1).toList
+  }
+
+  // P23
+  def randomSelect(n: Int, ls: List[Symbol]) : List[Symbol] =  {
+    val r= new java.util.Random
+    def helper(ndx: Int, lsIn: List[Symbol], lsOut: List[Symbol]) : List[Symbol] = {
+      if(ndx == 0)
+        lsOut
+      else {
+        val p = removeAt( r.nextInt(lsIn.length), ls )
+        helper(ndx-1, p._1, p._2 :: lsOut)
+      }
+    }
+    helper(n, ls, List[Symbol]())
+  }
+  def flatMapSublist[A,B](ls: List[A])(f: (List[A]) => List[B]): List[B] = 
+    ls match {
+      case Nil => Nil
+      case sublist@(_ :: tail) => f(sublist) ::: flatMapSublist(tail)(f)
+    }
+  
 }
