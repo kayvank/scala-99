@@ -142,5 +142,31 @@ object ScalaProblem99 {
       case Nil => Nil
       case sublist@(_ :: tail) => f(sublist) ::: flatMapSublist(tail)(f)
     }
+
+  // P31 recursive
+  def isEven(n: Int) = n %2 == 0
+  def isOdd(n: Int) = ! isEven(n)
+
+  implicit class PrimeFinder(n: Int) {
+    def isPrime : Boolean = {
+      def helper(x: Int): Boolean = {
+        if( x <= 1 ) true
+        else if( isEven(x) ) helper(x-1)
+        else if ((n % x) == 0) false
+        else helper(x-1)
+      }
+      helper( Math.sqrt(n).toInt )
+    }
+  }
+
+  // P31 Functional
+  implicit class StreamingPrimeFinder(n: Int) {
+    def isPrime2 : Boolean = {
+      (2 to Math.sqrt(n).toInt ).reverse.toStream
+        .filter(isOdd)
+        .find(n % _ == 0)
+        .isEmpty
+    } 
+  }
   
-}
+} 

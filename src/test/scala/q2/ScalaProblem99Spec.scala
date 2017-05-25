@@ -20,7 +20,7 @@ class ScalaProblem99Specs extends Specification {
     computed === List(1,2,1,2,3,4,1)
   }
 
-  " deDup using fold  specs" >> {
+  "deDup using fold  specs" >> {
     val tstList = List(1,2,1,1,2,2,3,3,4,1)
     val computed = dedupFold(tstList)
     println(s"-- deDups computed = ${computed}")
@@ -102,5 +102,13 @@ class ScalaProblem99Specs extends Specification {
     val computed = randomSelect(3, List('a, 'b, 'c, 'd, 'f, 'g, 'h)) 
     println(s"randomly selected: ${computed}")
       computed.size ===3
+  }
+
+  "determine whether a given number is prime Recursive specs" >> {
+    7.isPrime  && 5.isPrime && 11.isPrime && ! 21.isPrime
+  }
+
+  "determine whether a given number is prime Functional specs" >> {
+     7.isPrime2  && 5.isPrime2 && 11.isPrime2 && ! 21.isPrime2
   }
 }
