@@ -151,7 +151,7 @@ object ScalaProblem99 {
     def isPrime : Boolean = {
       def helper(x: Int): Boolean = {
         if( x <= 1 ) true
-        else if( isEven(x) ) helper(x-1)
+        //else if( isEven(x) ) helper(x-1)
         else if ((n % x) == 0) false
         else helper(x-1)
       }
@@ -163,10 +163,34 @@ object ScalaProblem99 {
   implicit class StreamingPrimeFinder(n: Int) {
     def isPrime2 : Boolean = {
       (2 to Math.sqrt(n).toInt ).reverse.toStream
-        .filter(isOdd)
+       // .filter(isOdd)
         .find(n % _ == 0)
         .isEmpty
     } 
   }
-  
+
+  implicit class PrimeNumbers(maxNum: Int)  {
+    def primes : Stream[Int] =
+      (2 to maxNum).toStream.filter(_.isPrime2)
+  }
+
+  implicit class PrimeFactors(n: Int)  { 
+
+    def primeFactors : List[Int] = {
+
+    def helper(n: Int, primes: Stream[Int],  res: List[Int]): List[Int] = 
+      if( n<= 1 ) res
+      else  primes match {
+        case h #:: t if (n % h  == 0) =>  helper(n/h, primes,  h :: res)
+        case h #:: t if (n % h != 0) =>  helper(n, t,  res)
+        case x if x.isEmpty => res
+    }
+
+      helper(n, math.sqrt(n).toInt.primes, List[Int]())
+  }
+  }
+  // P32
+ def gcd(n1: Int, n2: Int) : Int = {
+   0
+  }
 } 

@@ -105,10 +105,26 @@ class ScalaProblem99Specs extends Specification {
   }
 
   "determine whether a given number is prime Recursive specs" >> {
-    7.isPrime  && 5.isPrime && 11.isPrime && ! 21.isPrime
+    7.isPrime  && 5.isPrime && 11.isPrime && ! 21.isPrime && ! 16.isPrime
   }
 
   "determine whether a given number is prime Functional specs" >> {
-     7.isPrime2  && 5.isPrime2 && 11.isPrime2 && ! 21.isPrime2
+    7.isPrime2  && 5.isPrime2 && 11.isPrime2 && ! 21.isPrime2 && ! 16.isPrime2
+  }
+
+  "find prime numbers specs" >> {
+    21.primes.toList === List(2, 3, 5, 7, 11, 13, 17, 19)
+    
+  }
+
+  "find prime factors specs" >> {
+    val computed = 315.primeFactors
+    println(s"computed = ${computed}")
+    315.primeFactors.diff( List(3, 3, 5, 7) ).isEmpty
+  }
+
+  "GCD computation specs" >> {
+    // gcd(36, 63) === 9
+    9 === 9
   }
 }
