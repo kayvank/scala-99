@@ -1,19 +1,29 @@
-scalaVersion := "2.11.7"
 
-val scalazVersion = "7+"
 
-libraryDependencies ++= Seq(
-  "org.scalaz" %% "scalaz-core" % scalazVersion,
-  "org.scalaz" %% "scalaz-effect" % scalazVersion,
-  "org.scalaz" %% "scalaz-typelevel" % scalazVersion,
-  "org.specs2" %% "specs2-core" % "3.8.9" % "test",
-  "org.scalaz" %% "scalaz-scalacheck-binding" % scalazVersion % "test"
-)
+ThisBuild / organization := "q2"
+ThisBuild / version      := "1.0-SNAPSHOT"
+ThisBuild / scalaVersion := "2.12.11"
+ThisBuild / scalafmtOnCompile := true
 
-scalacOptions in Test ++= Seq("-Yrangepos")
+libraryDependencies ++= {
+  object V {
+    val specs2 = "4.10.1"
+  }
+    Seq(
+      "org.specs2" %% "specs2-core" % V.specs2 % "test"
+    )
+  }
+
 
 scalacOptions ++= Seq(
-  "-feature"
+  "-Ywarn-unused:imports",
+  "-Xfatal-warnings",
+  "-deprecation",
+  "-feature",
+  "-Xlint:infer-any",
+  "-Xlint:adapted-args",
+  "-Ywarn-adapted-args",
+  "-Xlint:delayedinit-select",
+  "-unchecked"
 )
 
-initialCommands in console := "import scalaz._, Scalaz._"
