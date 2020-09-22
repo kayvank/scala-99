@@ -13,7 +13,6 @@ object ScalaProblem99 {
     helper(ls.reverse, List[A]())
   }
   def deDups(lsIn: List[Int]): List[Int] = {
-
     def helper(inList: List[Int], outList: List[Int]): List[Int] =
       inList match {
         case Nil => outList
@@ -27,14 +26,15 @@ object ScalaProblem99 {
       }
     helper(lsIn.reverse, List[Int]())
   }
+
   def dedupFold[A](ls: List[A]): List[A] =
     ls.reverse.foldLeft(List[A]()) { (z, r) =>
       if (z.isEmpty || z.head != r)
         r :: z
       else z
     }
-  def packList[A](ls: List[A]): List[List[A]] = {
 
+  def packList[A](ls: List[A]): List[List[A]] = {
     def helper(inList: List[A], outList: List[List[A]]): List[List[A]] =
       inList match {
         case Nil => outList
@@ -46,14 +46,12 @@ object ScalaProblem99 {
     helper(ls, Nil).reverse
   }
 
-  def packWithScan[A](ls: List[A]): List[List[A]] =
-    ls match {
-      case Nil    => Nil
-      case h :: t => ls.span(_ == h)._1 :: packWithScan(t.dropWhile(_ == h))
-    }
+  def packWithScan[A](ls: List[A]): List[List[A]] = ls match {
+    case Nil    => Nil
+    case h :: t => ls.span(_ == h)._1 :: packWithScan(t.dropWhile(_ == h))
+  }
 
   def packWithScanTail(ls: List[Char]): List[List[Char]] = {
-
     def helper(
         inList: List[Char],
         outList: List[List[Char]]
@@ -63,6 +61,7 @@ object ScalaProblem99 {
         case h :: t =>
           helper(t.dropWhile(_ == h), ls.span(_ == h)._1 :: outList)
       }
+
     helper(ls, Nil)
   }
 
@@ -137,6 +136,7 @@ object ScalaProblem99 {
       }
     helper(n, ls, List[Symbol]())
   }
+
   def flatMapSublist[A, B](ls: List[A])(f: (List[A]) => List[B]): List[B] =
     ls match {
       case Nil                   => Nil

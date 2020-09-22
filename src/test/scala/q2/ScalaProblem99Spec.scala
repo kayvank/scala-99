@@ -137,8 +137,4 @@ class ScalaProblem99Specs extends Specification {
     315.primeFactors.diff(List(3, 3, 5, 7)).isEmpty
   }
 
-  "GCD computation specs" >> {
-    // gcd(36, 63) === 9
-    9 === 9
-  }
 }
