@@ -1,6 +1,8 @@
 S-99: Ninety-Nine Scala Problems
 --
-Practice solutions to [99-scala problems](http://aperiodic.net/phil/scala/s-99/)
+Solutions to [99-scala problems](http://aperiodic.net/phil/scala/s-99/). 
+
+To evaluate the solutions execute the unit tests
 
 ## Installation Prerequisite
 
@@ -9,7 +11,9 @@ Practice solutions to [99-scala problems](http://aperiodic.net/phil/scala/s-99/)
 * [sbt](https://www.scala-sbt.org/1.x/docs/Setup.html)
 
 
-## Build and test
+## Unit tests
+
+![unit-test](./docs/img/unit-test.jpg)
 
 ``` sh
 git clone git@github.com:kayvank/scala-99.git
